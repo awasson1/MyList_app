@@ -51,8 +51,9 @@
 		FFDD8B5829E699C100E00837 /* MyList */ = {
 			isa = PBXGroup;
 			children = (
-				FFDD8B5929E699C100E00837 /* MyListApp.swift */,
-				FFDD8B5B29E699C100E00837 /* ContentView.swift */,
+				FFDD8B6929E69A9000E00837 /* Model */,
+				FFDD8B6829E69A8B00E00837 /* View */,
+				FFDD8B6729E69A7800E00837 /* ViewModel */,
 				FFDD8B5D29E699C200E00837 /* Assets.xcassets */,
 				FFDD8B5F29E699C200E00837 /* Preview Content */,
 			);
@@ -65,6 +66,29 @@
 				FFDD8B6029E699C200E00837 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FFDD8B6729E69A7800E00837 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FFDD8B6829E69A8B00E00837 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FFDD8B5929E699C100E00837 /* MyListApp.swift */,
+				FFDD8B5B29E699C100E00837 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FFDD8B6929E69A9000E00837 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
