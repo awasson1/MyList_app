@@ -56,6 +56,19 @@ struct NotesListView: View {
                         }
                     }
                 }
+                 .navigationBarItems(
+                     trailing:
+                         Button(
+                             action:
+                                 {
+                                     for i in 0..<10
+                                     {
+                                         vm.add("Note \(i)")
+                                     }
+                                 },
+                             label: { smallButtonFormat("create stub", Color(.yellow)) }
+                         )
+                 )
             }
         }
     }

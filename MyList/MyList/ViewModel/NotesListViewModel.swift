@@ -12,16 +12,16 @@ class NotesListViewModel: ObservableObject
 {
     @Published var notes = [Note]()
     
-    init()
-    {
-        for var i in 0..<15
-        {
-            add("Note \(i)")
-        }
-
-        notes = notes.sorted(by: { $0.name < $1.name })
-        
-    }
+//    init()
+//    {
+//        for var i in 0..<15
+//        {
+//            add("Note \(i)")
+//        }
+//
+//        notes = notes.sorted(by: { $0.name < $1.name })
+//        
+//    }
     
     func delete(at offsets: IndexSet)
     {
