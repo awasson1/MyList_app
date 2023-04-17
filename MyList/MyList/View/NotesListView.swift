@@ -10,42 +10,63 @@ import SwiftUI
 struct NotesListView: View {
     
     @ObservedObject var vm: NotesListViewModel
-    
+
     var body: some View {
         
         NavigationView
         {
             ZStack
             {
+                //Background color
                 Color(.black)
                     .ignoresSafeArea()
                 
                 List()
                 {
+                    //Render list based on view model data
                     ForEach(vm.notes)
                     {
                         note in
                         
-                        ZStack
+                        //Link to detailed view where users can read the full note
+                        NavigationLink(destination: NoteDetailedView(vm: vm, n: note.name, d: note.description, i: note.image))
                         {
-                            //Color(.darkGray)
-                              //  .ignoresSafeArea()
-                            
-                            Text(note.name)
-                                .foregroundColor(Color(.white))
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            ZStack
+                            {
+                                VStack
+                                {
+                                    Text(note.name)
+                                        .font(.system(size: 24))
+                                        .foregroundColor(Color(.white))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    HStack
+                                    {
+                                        Image(uiImage: note.image)
+                                            .resizable()
+                                            .frame(width: 80, height: 50)
+                                            .scaledToFit()
+                                            //.padding()
+                                            //.centerHorizontal()
+                                        
+                                        Text(note.description)
+                                            .foregroundColor(Color(.white))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                }
+                            }
+                            .padding()
+                            .background(Color(.darkGray))
+                            .cornerRadius(15)
                         }
-                        
-                        .padding()
-                        .background(Color(.darkGray))
-                        .cornerRadius(15)
-                        
                     }
                     .listRowBackground(Color.black)
                 }
                 .scrollContentBackground(.hidden)
                 
                 //.navigationBarTitleDisplayMode(.inline)   figure out what this was for
+                
+                //custom title bar
                 .toolbar
                  {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -58,13 +79,12 @@ struct NotesListView: View {
                 }
                  .navigationBarItems(
                      trailing:
+                        
+                        //This creates stubs for demos
                          Button(
                              action:
                                  {
-                                     for i in 0..<10
-                                     {
-                                         vm.add("Note \(i)")
-                                     }
+                                     vm.add("Example note", "This is a short description", UIImage(named: "default")!)
                                  },
                              label: { smallButtonFormat("create stub", Color(.yellow)) }
                          )

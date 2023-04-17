@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NoteDetailedView: View {
     
+    //This is WIP, just to see if the data got this far
+    
     @ObservedObject var vm: NotesListViewModel
     
     var n: String
@@ -16,7 +18,25 @@ struct NoteDetailedView: View {
     var i: UIImage
     
     var body: some View {
-        Text("This is a stub!")
+        Text(n)
+            .font(.system(size: 36))
+            .foregroundColor(Color(.black))
+            .frame(maxWidth: .infinity, alignment: .leading)
+        
+        Image(uiImage: i)
+            .resizable()
+            .frame(width: 240, height: 150)
+            .scaledToFit()
+        
+        Text(d)
+            .foregroundColor(Color(.black))
+            .frame(maxWidth: .infinity, alignment: .leading)
+        
+        Spacer()
+        
+        Text("Contents of the note go here!")
+        
+        Spacer()
     }
 }
 

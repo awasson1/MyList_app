@@ -12,6 +12,6 @@ struct Note: Identifiable, Equatable
 {
     var id = UUID()
     var name: String
-    /*var description: String
-    var image: UIImage*/
+    var description: String
+    var image: UIImage
 }
