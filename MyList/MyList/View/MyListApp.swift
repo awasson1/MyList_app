@@ -9,13 +9,9 @@ import SwiftUI
 
 @main
 struct MyListApp: App {
-    
     var body: some Scene {
-        
         WindowGroup {
-            
             NotesListView(vm: NotesListViewModel())
-            
         }
     }
 }

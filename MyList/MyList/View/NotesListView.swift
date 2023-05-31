@@ -1,6 +1,8 @@
 //
-//  ContentView.swift
+//  NotesListView.swift
 //  MyList
+//  Contains the stacks necessary to display the list of items
+//  Also includes the links to redirect the user to a detailed view of list items
 //
 //  Created by Anthony Wasson on 4/12/23.
 //
@@ -46,8 +48,6 @@ struct NotesListView: View {
                                             .resizable()
                                             .frame(width: 80, height: 50)
                                             .scaledToFit()
-                                            //.padding()
-                                            //.centerHorizontal()
                                         
                                         Text(note.description)
                                             .foregroundColor(Color(.white))
@@ -63,9 +63,7 @@ struct NotesListView: View {
                     .listRowBackground(Color.black)
                 }
                 .scrollContentBackground(.hidden)
-                
-                //.navigationBarTitleDisplayMode(.inline)   figure out what this was for
-                
+
                 //custom title bar
                 .toolbar
                  {
