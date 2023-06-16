@@ -17,6 +17,71 @@ struct NotesListView: View {
         
         NavigationView
         {
+            Form
+            {
+                Section
+                {
+                    ForEach(vm.notes)
+                    {
+                        item in
+                        NavigationLink(destination: NoteDetailedView(vm: vm, n: item.name, d: item.description, i: item.image))
+                        {
+                            ZStack
+                            {
+                                VStack
+                                {
+                                    Text(item.name)
+                                        .font(.system(size: 24))
+                                        .foregroundColor(Color(.black))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    HStack
+                                    {
+                                        Image(uiImage: item.image)
+                                            .resizable()
+                                            .frame(width: 80, height: 50)
+                                            .scaledToFit()
+                                        
+                                        Text(item.description)
+                                            .foregroundColor(Color(.black))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                }
+                            }
+//                            .padding()
+//                            .background(Color(.darkGray))
+//                            .cornerRadius(15)
+                        }
+                    }
+                }
+            }
+            .toolbar
+             {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    VStack {
+                        Text("**Notes**")
+                          .font(.system(size: 30))
+                          .foregroundColor(Color(.black))
+                    }
+                }
+            }
+             .navigationBarItems(
+                 trailing:
+                    
+                    //This creates stubs for demos
+                     Button(
+                         action:
+                             {
+                                 vm.add("Example note", "This is a short description", UIImage(named: "default")!)
+                             },
+                         label: { smallButtonFormat("create stub", Color(.yellow)) }
+                     )
+             )
+        }
+        
+        /*  Old code, will delete later, keeping here for reference
+        NavigationView
+        {
             ZStack
             {
                 //Background color
@@ -62,7 +127,7 @@ struct NotesListView: View {
                     }
                     .listRowBackground(Color.black)
                 }
-                .scrollContentBackground(.hidden)
+                //.scrollContentBackground(.hidden)
 
                 //custom title bar
                 .toolbar
@@ -88,7 +153,7 @@ struct NotesListView: View {
                          )
                  )
             }
-        }
+        }*/
     }
 }
 
