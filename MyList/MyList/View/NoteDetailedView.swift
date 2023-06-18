@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NoteDetailedView: View {
     
-    //This is WIP, just to see if the data got this far
-    
     @ObservedObject var vm: NotesListViewModel
     
     var n: String
@@ -39,12 +37,3 @@ struct NoteDetailedView: View {
         Spacer()
     }
 }
-
-
-/*
-struct NoteDetailedView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteDetailedView()
-    }
-}
-*/
