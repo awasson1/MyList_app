@@ -15,3 +15,9 @@ struct Note: Identifiable, Equatable
     var description: String
     var image: UIImage
 }
+
+struct Course: Hashable, Codable
+{
+    let name: String
+    let image: String
+}

@@ -10,14 +10,48 @@ import UIKit
 
 class NotesListViewModel: ObservableObject
 {
-    @Published var notes = [Note]()
+    @Published var notes = [Course]()
 
+    func fetch()
+    {
+        guard let url = URL(string: "https://iosacademy.io/api/v1/courses/index.php")
+        else
+        {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url)
+        {
+            [weak self] data, _, error in
+            guard let data = data, error == nil
+            else
+            {
+                return
+            }
+            
+            //convert to JSON
+            do
+            {
+                let courses = try JSONDecoder().decode([Course].self, from: data)
+                DispatchQueue.main.async
+                {
+                    self?.notes = courses
+                }
+            }
+            catch
+            {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
     func delete(at offsets: IndexSet)
     {
         notes.remove(atOffsets: offsets)
     }
     
-    func add(_ n: String, _ d: String, _ i: UIImage)
+    /*func add(_ n: String, _ d: String, _ i: UIImage)
     {
         let tmp = Note(name: n, description: d, image: i)
         
@@ -33,5 +67,5 @@ class NotesListViewModel: ObservableObject
         {
             notes.remove(at: index)
         }
-    }
+    }*/
 }

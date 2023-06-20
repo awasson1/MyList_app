@@ -11,72 +11,102 @@ import SwiftUI
 
 struct NotesListView: View {
     
-    @ObservedObject var vm: NotesListViewModel
+    @StateObject var vm: NotesListViewModel
 
     var body: some View {
         
         NavigationView
         {
-            Form
+            List
             {
-                Section
+                ForEach(vm.notes, id: \.self)
                 {
-                    ForEach(vm.notes)
+                    course in
+                    HStack
                     {
-                        item in
-                        NavigationLink(destination: NoteDetailedView(vm: vm, n: item.name, d: item.description, i: item.image))
-                        {
-                            ZStack
-                            {
-                                VStack
-                                {
-                                    Text(item.name)
-                                        .font(.system(size: 24))
-                                        .foregroundColor(Color(.black))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    
-                                    HStack
-                                    {
-                                        Image(uiImage: item.image)
-                                            .resizable()
-                                            .frame(width: 80, height: 50)
-                                            .scaledToFit()
-                                        
-                                        Text(item.description)
-                                            .foregroundColor(Color(.black))
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                    }
-                                }
-                            }
-//                            .padding()
-//                            .background(Color(.darkGray))
-//                            .cornerRadius(15)
-                        }
+                        URLImage(urlString: course.image)
+                        
+                        Text(course.name)
+                            .bold()
                     }
+                    .padding(3)
                 }
             }
-            .toolbar
-             {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    VStack {
-                        Text("**Notes**")
-                          .font(.system(size: 30))
-                          .foregroundColor(Color(.black))
-                    }
-                }
+            .navigationTitle("Courses")
+            .onAppear
+            {
+                vm.fetch()
             }
-             .navigationBarItems(
-                 trailing:
-                    
-                    //This creates stubs for demos
-                     Button(
-                         action:
-                             {
-                                 vm.add("Example note", "This is a short description", UIImage(named: "default")!)
-                             },
-                         label: { smallButtonFormat("create stub", Color(.yellow)) }
-                     )
-             )
         }
+//            Form
+//            {
+//                Section
+//                {
+//                    ForEach(vm.notes, id: \.self)
+//                    {
+//                        item in
+//                        NavigationLink(destination: NoteDetailedView(n: item.name))
+//                        {
+//                            ZStack
+//                            {
+//                                VStack
+//                                {
+//                                    //note title
+//                                    Text(item.name)
+//                                        .font(.system(size: 24))
+//                                        .foregroundColor(Color(.black))
+//                                        .frame(maxWidth: .infinity, alignment: .leading)
+//
+//                                    HStack
+//                                    {
+//                                        //descriptive image
+//                                        URLImage(urlString: item.image)
+//
+//                                        /*Image(uiImage: item.image)
+//                                            .resizable()
+//                                            .frame(width: 80, height: 50)
+//                                            .scaledToFit()*/
+//
+//                                        //description
+//                                        /* commented out for testing purposes
+//                                         Text(item.description)
+//                                            .foregroundColor(Color(.black))
+//                                            .frame(maxWidth: .infinity, alignment: .leading)
+//                                         */
+//                                    }
+//                                }
+//                            }
+////                            .padding()
+////                            .background(Color(.darkGray))
+////                            .cornerRadius(15)
+//                        }
+//                    }
+//                }
+//            }
+//            .toolbar
+//             {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    VStack {
+//                        Text("**Notes**")
+//                          .font(.system(size: 30))
+//                          .foregroundColor(Color(.black))
+//                    }
+//                }
+//            }
+//             /* stubs hidden for now
+//
+//              .navigationBarItems(
+//                 trailing:
+//
+//                    //This creates stubs for demos
+//                     Button(
+//                         action:
+//                             {
+//                                 vm.add("Example note", "This is a short description", UIImage(named: "default")!)
+//                             },
+//                         label: { smallButtonFormat("create stub", Color(.yellow)) }
+//                     )
+//             )
+//            */
     }
 }

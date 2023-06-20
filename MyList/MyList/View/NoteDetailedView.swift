@@ -9,11 +9,9 @@ import SwiftUI
 
 struct NoteDetailedView: View {
     
-    @ObservedObject var vm: NotesListViewModel
-    
     var n: String
-    var d: String
-    var i: UIImage
+    //var d: String
+    //var i: UIImage
     
     var body: some View {
         Text(n)
@@ -21,6 +19,7 @@ struct NoteDetailedView: View {
             .foregroundColor(Color(.black))
             .frame(maxWidth: .infinity, alignment: .leading)
         
+        /*
         Image(uiImage: i)
             .resizable()
             .frame(width: 240, height: 150)
@@ -28,7 +27,7 @@ struct NoteDetailedView: View {
         
         Text(d)
             .foregroundColor(Color(.black))
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)*/
         
         Spacer()
         
