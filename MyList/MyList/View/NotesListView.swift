@@ -21,18 +21,22 @@ struct NotesListView: View {
             {
                 ForEach(vm.notes, id: \.self)
                 {
-                    course in
-                    HStack
+                    item in
+                    
+                    NavigationLink(destination: NoteDetailedView(n: item.name))
                     {
-                        URLImage(urlString: course.image)
-                        
-                        Text(course.name)
-                            .bold()
+                        HStack
+                        {
+                            URLImage(urlString: item.image)
+                            
+                            Text(item.name)
+                                .bold()
+                        }
+                        .padding(2)
                     }
-                    .padding(3)
                 }
             }
-            .navigationTitle("Courses")
+            .navigationTitle("Items")
             .onAppear
             {
                 vm.fetch()
